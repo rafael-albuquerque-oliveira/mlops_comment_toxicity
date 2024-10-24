@@ -1,5 +1,6 @@
 from tensorflow.keras.layers import TextVectorization
 
+
 class TextVectorizer:
     """Class to handle text vectorization for NLP tasks."""
 

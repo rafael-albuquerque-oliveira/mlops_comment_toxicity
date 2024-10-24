@@ -12,6 +12,7 @@ class DataLoader:
         """
         self.file_path = file_path
 
+
     def load_data(self):
         """Loads data from the specified CSV file and returns features and labels."""
         df = pd.read_csv(self.file_path)

@@ -2,6 +2,7 @@ from data_loader import DataLoader
 from text_vectorization import TextVectorizer
 from dataset_preparation import DatasetPreparation
 
+
 class ToxicityAnalysisPipeline:
     """Class to manage the entire toxicity analysis pipeline."""
 
