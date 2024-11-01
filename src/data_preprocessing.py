@@ -5,7 +5,7 @@ import numpy as np
 
 from tensorflow.keras.layers import TextVectorization
 
-df = pd.read_csv('/Users/rafaeloliveira/code/Github Repos/mlops_comment_toxicity/data/jigsaw-toxic-comment-classification-challenge/train.csv.zip')
+df = pd.read_csv('/Users/rafaeloliveira/code/Github Repos/mlops_comment_toxicity/data/train.csv.zip')
 
 X = df['comment_text']
 y = df[df.columns[2:]].values
