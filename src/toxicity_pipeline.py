@@ -1,39 +1,27 @@
-from data_loader import DataLoader
-from text_vectorization import TextVectorizer
-from dataset_preparation import DatasetPreparation
-
+from .data_loader import DataLoader
+from .text_vectorization import TextVectorizer
+from .dataset_preparation import DatasetPreparation
+from .model_trainer import ModelTrainer
 
 class ToxicityAnalysisPipeline:
-    """Class to manage the entire toxicity analysis pipeline."""
-
     def __init__(self, data_file):
-        """
-        Initializes the pipeline with a dataset file path.
-
-        Args:
-            data_file (str): Path to the dataset CSV file.
-        """
         self.data_file = data_file
 
     def run(self):
-        """Runs the entire pipeline from loading data to preparing datasets."""
+        """Run the entire pipeline for toxicity analysis."""
+        # Load data
+        data_loader = DataLoader(self.data_file)
+        X, y = data_loader.load_data()
 
-        # Step 1: Load Data
-        loader = DataLoader(self.data_file)
-        X, y = loader.load_data()
+        # Vectorize text data
+        vectorizer = TextVectorizer(max_tokens=200_000)
+        vectorizer.fit(X.values)
+        vectorized_texts = vectorizer.transform(X.values)
 
-        # Step 2: Text Vectorization
-        vectorizer = TextVectorizer()
-        vectorizer.fit(X.values)  # Fit on text data
+        # Prepare datasets for training and validation
+        dataset_prep = DatasetPreparation(vectorized_texts.numpy(), y)
+        train_ds, val_ds, test_ds = dataset_prep.create_dataset()
 
-        vectorized_text = vectorizer.transform(X.values)
-
-        # Step 3: Prepare Dataset
-        prep = DatasetPreparation(vectorized_text, y)
-
-        dataset = prep.create_dataset()  # Create TensorFlow Dataset
-
-        # Step 4: Split Dataset into train/val/test sets
-        train_dataset, val_dataset, test_dataset = prep.split_dataset(dataset)
-
-        return train_dataset, val_dataset, test_dataset  # Return datasets for further use
+        # Train the model using the prepared datasets
+        trainer = ModelTrainer(config)
+        trainer.train(train_ds, val_ds)
