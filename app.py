@@ -1,7 +1,8 @@
 import streamlit as st
 import requests
 
-st.title("Toxic Comment Detector")
+# Need to make it prettier
+st.title("Toxic Comment Analyzer")
 
 user_input = st.text_area("Enter a comment:")
 if st.button("Analyze"):
