@@ -1,0 +1,17 @@
+service: "src/api_service.py:svc" # Path to the BentoML service
+include:
+  - "src/*.py" # Include all Python files in the src directory
+  - "models/best_model.keras" # Include the trained model
+  - "requirements.txt" # Include the dependencies file
+
+python:
+  packages:
+    - pandas==2.0.3
+    - tensorflow==2.12.0
+    - transformers==4.30.0
+    - bentoml==1.0.0
+
+labels:
+  owner: your-name # Replace with your name or team
+  project: toxicity-classifier # Project name
+  version: 1.0.0 # Version of the Bento

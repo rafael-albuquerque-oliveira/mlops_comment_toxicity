@@ -10,6 +10,9 @@ __pycache__/
 .Python
 build/
 data/
+mlops/
+old_files/
+notebooks/
 develop-eggs/
 dist/
 downloads/
