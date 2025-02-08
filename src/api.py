@@ -25,5 +25,4 @@ def predict():
 
     return jsonify({'prediction': prediction})
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+# No need to run app here, Gunicorn will handle it
