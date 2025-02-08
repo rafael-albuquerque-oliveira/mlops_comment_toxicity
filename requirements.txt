@@ -2,11 +2,12 @@ setuptools>=65.0.0
 wheel
 gunicorn
 flask
-tensorflow==2.15.0
-keras==2.15.0
-protobuf<3.20
-tensorboard==2.15.0
+tensorflow
 transformers==4.36.0
 numpy
 pandas
 requests
+sentencepiece
+torch
+torchvision
+torchaudio
