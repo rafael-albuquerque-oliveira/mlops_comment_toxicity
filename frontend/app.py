@@ -12,7 +12,7 @@ user_input = st.text_area("Enter a comment:")
 if st.button("Analyze"):
     if user_input.strip():  # Ensure input is not empty
         try:
-            response = requests.post(API_URL, json={"text": user_input}, timeout=10)
+            response = requests.post(API_URL, json={"text": user_input}, timeout=60)
             if response.status_code == 200:
                 prediction = response.json()
                 st.write("### Prediction Results:")
