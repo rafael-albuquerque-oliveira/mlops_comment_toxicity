@@ -1,13 +1,18 @@
-from model import ToxicityModel
+import tensorflow as tf
+from src.data_loader import DataLoader
+from src.model import ToxicCommentModel
 
-if __name__ == "__main__":
-    # Define file path for dataset
-    file_path = '../data/train.csv.zip'  # Update with correct path
+# Load data
+data_loader = DataLoader("../data/train.csv.zip")
+train_ds, val_ds, test_ds = data_loader.train_ds, data_loader.val_ds, data_loader.test_ds
+vectorizer = data_loader.get_vectorizer()
 
-    # Initialize and execute model pipeline
-    tox_model = ToxicityModel()
-    X, y = tox_model.load_data(file_path)
-    train_ds, val_ds, test_ds = tox_model.prepare_data(X, y)
-    tox_model.build_model()
-    tox_model.train(train_ds, val_ds)
-    tox_model.evaluate(test_ds)
+# Build the model
+model = ToxicCommentModel().model
+
+# Training callbacks
+early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
+model_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath='../models/best_model.keras', monitor='val_loss', save_best_only=True)
+
+# Train model
+model.fit(train_ds, epochs=10, validation_data=val_ds, callbacks=[early_stopping, model_checkpoint])
