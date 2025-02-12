@@ -1,14 +1,9 @@
 import streamlit as st
 import requests
-
-# Define the API URL (replace with your actual Cloud Run URL)
-api_url = "https://toxic-comments-api-678895434688.us-central1.run.app/predict"
-
-
-import streamlit as st
-import requests
 import pandas as pd
 import matplotlib.pyplot as plt
+
+api_url = "https://toxic-comments-api-678895434688.us-central1.run.app/predict"
 
 # Função para enviar texto para a API Flask e obter previsões
 def prever_toxicidade(texto):
