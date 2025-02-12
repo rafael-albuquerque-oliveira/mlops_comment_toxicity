@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Define the API URL (replace with your actual Cloud Run URL)
-API_URL = "https://toxic-comments-api-678895434688.us-central1.run.app/predict"
+api_url = "https://toxic-comments-api-678895434688.us-central1.run.app/predict"
 
 
 import streamlit as st
