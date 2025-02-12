@@ -17,7 +17,7 @@ def prever_toxicidade(texto):
         return {"erro": "Falha ao obter previsão"}
 
 # Configuração da Interface no Streamlit
-st.title("🔍 Classificação de Comentários Tóxicos")
+st.title("🔍 Classificação de Comentários Tóxicos V1.0")
 st.markdown("Digite um comentário para analisar seu nível de toxicidade.")
 
 # Entrada do usuário
@@ -33,19 +33,29 @@ if st.button("📊 Analisar"):
         else:
             # Exibir textos original e traduzido
             st.subheader("📄 Resultados da Análise")
-            st.markdown(f"**🗣️ Texto Original:** {resultado['original_text']}")
-            st.markdown(f"**🌎 Tradução:** {resultado['translated_text']}")
+            #st.markdown(f"**🗣️ Texto Original:** {resultado['original_text']}")
+            #st.markdown(f"**🌎 Tradução:** {resultado['translated_text']}")
 
             # Obter previsões e arredondar valores
             previsoes = resultado["prediction"]
-            previsoes_arredondadas = {k: round(v, 2) for k, v in previsoes.items()}
+            # Renomear as chaves conforme solicitado
+            mapeamento_nomes = {
+                "identity_hate": "Ódio Identitário",
+                "insult": "Insulto",
+                "obscene": "Obsceno",
+                "severe_toxic": "Severamente Tóxico",
+                "threat": "Ameaça",
+                "toxic": "Tóxico"
+            }
+            
+            previsoes_renomeadas = {mapeamento_nomes.get(k, k): round(v, 2) for k, v in previsoes.items()}
 
             # Exibir tabela de previsões
             st.markdown("### 🔢 Níveis de Toxicidade")
-            df = pd.DataFrame.from_dict(previsoes_arredondadas, orient="index", columns=["Probabilidade"])
+            df = pd.DataFrame.from_dict(previsoes_renomeadas, orient="index", columns=["Probabilidade"])
             df.reset_index(inplace=True)
             df.columns = ["Categoria", "Probabilidade"]
-            st.dataframe(df)
+            #st.dataframe(df)
 
             # Criar gráfico de barras
             st.markdown("### 📊 Visualização Gráfica")
