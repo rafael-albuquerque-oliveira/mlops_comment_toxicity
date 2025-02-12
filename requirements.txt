@@ -11,3 +11,4 @@ sentencepiece
 torch
 torchvision
 torchaudio
+matplotlib
