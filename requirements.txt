@@ -1,8 +1,10 @@
 setuptools>=65.0.0
 wheel
-gunicorn
-flask
-tensorflow
+matplotlib
+flask==3.0.0
+gunicorn==20.1.0
+tensorflow==2.18.0
+torch==2.2.0
 transformers==4.36.0
 numpy
 pandas
@@ -11,4 +13,4 @@ sentencepiece
 torch
 torchvision
 torchaudio
-matplotlib
+
