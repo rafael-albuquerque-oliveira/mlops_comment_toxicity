@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-.devcontainer
+.devcontainer/
 
 # C extensions
 *.so
@@ -12,6 +12,7 @@ __pycache__/
 .Python
 build/
 data/
+models/
 mlops/
 old_files/
 notebooks/
