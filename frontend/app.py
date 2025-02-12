@@ -32,7 +32,7 @@ if st.button("📊 Analisar"):
             st.error(resultado["erro"])
         else:
             # Exibir textos original e traduzido
-            st.subheader("📄 Resultados da Análise")
+            #st.subheader("📄 Resultados da Análise")
             #st.markdown(f"**🗣️ Texto Original:** {resultado['original_text']}")
             #st.markdown(f"**🌎 Tradução:** {resultado['translated_text']}")
 
@@ -51,7 +51,7 @@ if st.button("📊 Analisar"):
             previsoes_renomeadas = {mapeamento_nomes.get(k, k): round(v, 2) for k, v in previsoes.items()}
 
             # Exibir tabela de previsões
-            st.markdown("### 🔢 Níveis de Toxicidade")
+            #st.markdown("### 🔢 Níveis de Toxicidade")
             df = pd.DataFrame.from_dict(previsoes_renomeadas, orient="index", columns=["Probabilidade"])
             df.reset_index(inplace=True)
             df.columns = ["Categoria", "Probabilidade"]
