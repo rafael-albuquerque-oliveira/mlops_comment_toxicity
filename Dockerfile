@@ -13,6 +13,7 @@ COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install sentencepiece
 RUN pip install torch torchvision torchaudio
+RUN pip install matplotlib
 
 # Run the API using Gunicorn
 CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8080", "src.api:app"]
