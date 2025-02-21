@@ -38,7 +38,7 @@ if st.button("📊 Analisar"):
 
             # Obter previsões e arredondar valores
             previsoes = resultado["prediction"]
-            # Renomear as chaves conforme solicitado
+            # Renomear as chaves
             mapeamento_nomes = {
                 "identity_hate": "Ódio Identitário",
                 "insult": "Insulto",
